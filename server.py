@@ -1,0 +1,20 @@
+""" Caesar Cipher Chat Server
+
+    This program is a server that is able to encrypt and decrypt 
+    the messages it sends and receives using the caesar cipher.
+
+    This program is written in a purely functional style.
+"""
+import utils
+
+def main():
+    """ Parameters: None
+        Return: None
+
+        This function runs the code for the program.
+    """
+    args = utils.process_args()
+    print(args)
+
+if __name__ == "__main__":
+    main()
