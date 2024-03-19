@@ -14,7 +14,6 @@ def main():
         This function runs the code for the program.
     """
     args = utils.process_args()
-    print(args)
 
 if __name__ == "__main__":
     main()

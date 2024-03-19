@@ -1,7 +1,6 @@
 """ This file includes utility functions for server and client.
 """
 import argparse
-from effect.do import do
 from effect import Effect, sync_perform, sync_performer
 from effect import ComposedDispatcher, TypeDispatcher, base_dispatcher
 
@@ -9,7 +8,7 @@ def within_range(lower, upper, value):
     """ Parameters: lower: An integer value.
                     upper: An integer value.
                     value: A string of an integer value.
-        Return: Boolean of whether value is within the 
+        Return: Effect of whether value is within the 
         range [lower, upper)
         
         This function checks whether value is with the range of 
@@ -25,14 +24,23 @@ def within_range(lower, upper, value):
         return Effect(Intent(ValueError("Value is not within range.")))
 
 class Intent(object):
+    """ This is a general purpose intent object for the perform 
+    functions in the effect module.
+    """
     def __init__(self, thing):
         self.thing = thing
 
-#NOTE TO SELF: This perform function can be expanded as need.
+#NOTE TO SELF: This perform function can be expanded as needed.
 #I doubt there will be a need to however.
 @sync_performer
 def perform_intent(dispatcher, intent):
-    """
+    """ Parameters: dispatcher: A ComposedDispatcher object.
+                    intent: An Intent object.
+        Return: This function returns intent.thing if the intent is a 
+        primitive or raises an exception if intent.thing is an 
+        exception.
+
+        This performs the effect of intent objects.
     """
     if isinstance(intent.thing, BaseException):
         raise intent.thing
